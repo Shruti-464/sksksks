@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Appointments</title>
+</head>
+<body>
+    <h1>Appointments</h1>
+    <form method="POST">
+        <label for="patient_name">Patient Name</label>
+        <input type="text" name="patient_name" required>
+        <label for="doctor_name">Doctor Name</label>
+        <input type="text" name="doctor_name" required>
+        <label for="appointment_time">Appointment Time</label>
+        <input type="text" name="appointment_time" required>
+        <button type="submit">Book Appointment</button>
+    </form>
+
+    <h2>All Appointments</h2>
+    <ul>
+        {% for appointment in appointments %}
+            <li>{{ appointment.patient_name }} with {{ appointment.doctor_name }} at {{ appointment.appointment_time }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
