@@ -5,21 +5,23 @@
     <title>Appointments</title>
 </head>
 <body>
-    <h1>Appointments</h1>
+    <h1>Your Appointments</h1>
     <form method="POST">
-        <label for="patient_name">Patient Name</label>
-        <input type="text" name="patient_name" required>
-        <label for="doctor_name">Doctor Name</label>
-        <input type="text" name="doctor_name" required>
+        <label for="doctor_id">Select Doctor</label>
+        <select name="doctor_id" required>
+            {% for doctor in doctors %}
+                <option value="{{ doctor.id }}">{{ doctor.name }} ({{ doctor.specialization }})</option>
+            {% endfor %}
+        </select>
         <label for="appointment_time">Appointment Time</label>
-        <input type="text" name="appointment_time" required>
+        <input type="datetime-local" name="appointment_time" required>
         <button type="submit">Book Appointment</button>
     </form>
 
-    <h2>All Appointments</h2>
+    <h2>All Your Appointments</h2>
     <ul>
         {% for appointment in appointments %}
-            <li>{{ appointment.patient_name }} with {{ appointment.doctor_name }} at {{ appointment.appointment_time }}</li>
+            <li>{{ appointment.doctor.name }} - {{ appointment.appointment_time }} (Status: {{ appointment.status }})</li>
         {% endfor %}
     </ul>
 </body>
